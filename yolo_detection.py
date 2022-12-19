@@ -30,9 +30,11 @@ def detect_streaming(rtmp_streaming_url: str, time_to_detect: int):
             frame_number += 1
             print("** HANDLE FRAME NUMBER : {}\n***TIMESTAMP: {}".format(
                 frame_number,time.strftime("%Y%m%d-%H%M%S")))
+            print("RESULTS:")
             results = model(frame)
             results.print()
             print(results.pandas().xyxy[0])
+            print()        
             if time.monotonic() - start_time > time_to_detect:
                 break
     cap.release()
